@@ -2,6 +2,7 @@ import { Header } from "./components/Header"
 
 import styles from './App.module.css';
 import { SideBar } from "./components/SideBar";
+import { Post } from "./components/Post";
 
 function App() {
 
@@ -14,9 +15,7 @@ function App() {
       <SideBar />
 
       <main>
-        <p>
-          eduardo soares
-        </p>
+        <Post />
       </main>
     </div>
    </div>
