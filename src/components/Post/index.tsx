@@ -4,7 +4,7 @@ import styles from './post.module.css';
 
 import { format, formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, ChangeEvent, InvalidEvent } from 'react';
 
 interface PostProps {
   author: {
@@ -38,17 +38,15 @@ export function Post(props: PostProps) {
     setNewCommentText('');
   }
 
-  function handleNewCommentChange(event: FormEvent) {
-    const target = event.target as HTMLTextAreaElement;
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
 
-    target.setCustomValidity('');
-    setNewCommentText(target.value);
+    event.target.setCustomValidity('Esse campo é obrigatório!');
+    setNewCommentText(event.target.value);
   }
 
-  function handleNewCommentInvalid(event: FormEvent) {
-    const target = event.target as HTMLTextAreaElement;
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
 
-    target.setCustomValidity('Esse campo é obrigatório!');
+    event.target.setCustomValidity('Esse campo é obrigatório!');
   }
 
   function deleteComment(commentToDelete: string) {
